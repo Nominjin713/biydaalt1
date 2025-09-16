@@ -6,7 +6,7 @@ export default function Home() {
     <div >
       <Layout> 
         <h2 className="text-2xl font-bold"></h2>
-        <h2>энэ бол layout ашигласан жишээ</h2>
+  
       </Layout>
     </div>
   );
