@@ -10,4 +10,4 @@ export default function Header(){
         <Link href="/blog">Blog</Link>
       </nav>
     </header>
-    </header>)
+    </header>)}
