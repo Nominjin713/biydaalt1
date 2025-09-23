@@ -17,7 +17,7 @@
 
 import Link from "next/link";
 import styles from "./page.module.css";
-import Header from "@/components/Header";
+
 export default function BlogHome() {
   const posts = [
     { id: "1", title: "Post 1", excerpt: "Short intro to post 1" },
