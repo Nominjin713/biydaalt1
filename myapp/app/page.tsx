@@ -1,20 +1,25 @@
-import Image from "next/image";
 import Layout from "@/components/Layout";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div>
       <Layout>
-        <h2 className="text-2xl font-bold">Нүүр хуудас</h2>
+        <h2 className="text-2xl font-bold">Welcome</h2>
 
-        {/* Зураг */}
-        <Image
-          src="/images/logo.png"   // public/images/logo.png
-          alt="Манай сайтын лого"
-          width={300}
-          height={200}
-        />
+        <div className="p-6">
+          <h1 className="text-2xl font-bold mb-4">My First Image</h1>
+
+          <Image
+            src="/images/jennie.jpg"         // Must start with '/' for public folder
+            alt="Beautiful Mountain"        // Good for SEO and accessibility
+            width={600}                     // Required
+            height={400}                    // Required
+            className="rounded-lg shadow-lg"
+          />
+        </div>
       </Layout>
     </div>
   );
 }
+
