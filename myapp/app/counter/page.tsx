@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function CounterPage() {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
 
   const increment = () => setCount(count + 1);
 
