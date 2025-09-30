@@ -8,7 +8,10 @@ export default function Header(){
         <Link href="/about">About</Link> | 
         <Link href="/contact">Contact</Link> | 
         <Link href="/blog">Blog</Link> |
-        <Link href="/gallery">Gallery</Link> 
+        <Link href="/gallery">Gallery</Link> |
+        <Link href="/counter">Counter</Link>  |
+        <Link href="/todo">todo</Link>  
+
       </nav>
     </header>
     </header>)}
