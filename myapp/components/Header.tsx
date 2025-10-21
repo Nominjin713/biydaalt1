@@ -10,7 +10,9 @@ export default function Header(){
         <Link href="/blog">Blog</Link> |
         <Link href="/gallery">Gallery</Link> |
         <Link href="/counter">Counter</Link>  |
-        <Link href="/todo">todo</Link>  
+        <Link href="/todo">todo</Link> |
+        <Link href="/login">login</Link> |
+        <Link href="/register">register</Link>
 
       </nav>
     </header>
