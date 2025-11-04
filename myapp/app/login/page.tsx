@@ -19,21 +19,21 @@ export default function LoginPage() {
     }
 
     setError("");
-    alert(`Нэвтэрлээ: ${email}`);
+    alert(`✅ Амжилттай нэвтэрлээ: ${email}`);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-80 border hover:shadow-xl transition">
-        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
-          🔐 Login
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-200 via-indigo-200 to-purple-200 p-6">
+      <div className="bg-white/50 backdrop-blur-xl p-8 rounded-2xl shadow-xl w-96 border border-white/40 animate-fadeIn">
+        <h1 className="text-4xl font-extrabold text-center text-indigo-800 drop-shadow mb-6 animate-fadeIn">
+          🔐 Нэвтрэх
         </h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="email"
             placeholder="Имэйл"
-            className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
+            className="w-full bg-white/70 border border-indigo-200 p-3 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none shadow-sm"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -41,28 +41,28 @@ export default function LoginPage() {
           <input
             type="password"
             placeholder="Нууц үг"
-            className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
+            className="w-full bg-white/70 border border-indigo-200 p-3 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none shadow-sm"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
           {error && (
-            <p className="text-red-500 text-sm font-medium text-center">
+            <p className="text-red-500 text-sm font-semibold text-center animate-pulse">
               {error}
             </p>
           )}
 
           <button
             type="submit"
-            className="bg-blue-600 text-white py-2 rounded-md font-medium shadow hover:bg-blue-700 transition"
+            className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-xl shadow hover:bg-indigo-700 hover:shadow-xl hover:-translate-y-0.5 transition"
           >
             Нэвтрэх
           </button>
         </form>
 
-        <p className="text-sm text-center text-gray-600 mt-4">
+        <p className="text-center text-gray-700 mt-5 text-sm">
           Бүртгэлгүй юу?{" "}
-          <a className="text-blue-600 font-medium hover:underline" href="/register">
+          <a href="/register" className="text-indigo-700 font-semibold hover:underline">
             Бүртгүүлэх
           </a>
         </p>
