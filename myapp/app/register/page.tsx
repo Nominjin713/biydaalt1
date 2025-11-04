@@ -30,42 +30,56 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10">
-      <h1 className="text-2xl font-bold mb-4">Register</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-72">
-        <input
-          type="text"
-          placeholder="Name"
-          className="border p-2 rounded"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          className="border p-2 rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="border p-2 rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          className="border p-2 rounded"
-          value={confirm}
-          onChange={(e) => setConfirm(e.target.value)}
-        />
-        {error && <p className="text-red-500">{error}</p>}
-        <button type="submit" className="bg-green-500 text-white p-2 rounded">
-          Register
-        </button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-80 border hover:shadow-xl transition">
+        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
+          ✨ Register
+        </h1>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <input
+            type="text"
+            placeholder="Нэр"
+            className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Имэйл"
+            className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Нууц үг"
+            className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Нууц үг давтах"
+            className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+          />
+
+          {error && (
+            <p className="text-red-500 text-sm font-medium text-center">
+              {error}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            className="bg-blue-600 text-white py-2 rounded-md font-medium shadow hover:bg-blue-700 transition"
+          >
+            Бүртгүүлэх
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

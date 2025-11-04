@@ -1,166 +1,135 @@
 "use client";
-// Next.js 13+ App Router-д client component гэдгийг зааж өгнө.
-
 import { useState, useEffect } from "react";
 
 interface Todo {
-  text: string; // Todo-ийн бичвэр
-  done: boolean; // Дууссан эсэх
-  due: string; // Дуусах хугацаа (YYYY-MM-DD format)
+  text: string;
+  done: boolean;
+  due: string;
 }
 
 export default function TodoPage() {
-  // -------------------------------
-  // 🗂 State хувьсагчид
-  // -------------------------------
-  const [todos, setTodos] = useState<Todo[]>([]); // Бүх Todo жагсаалт
-  const [task, setTask] = useState(""); // Шинэ todo text
-  const [due, setDue] = useState(""); // Due date
-  const [filter, setFilter] = useState("all"); // all | done | notdone
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [task, setTask] = useState("");
+  const [due, setDue] = useState("");
+  const [filter, setFilter] = useState("all");
 
-  // -------------------------------
-  // 📥 LocalStorage-с өгөгдөл унших
-  // -------------------------------
   useEffect(() => {
     const saved = localStorage.getItem("todos");
-    if (saved) {
-      setTodos(JSON.parse(saved));
-    }
+    if (saved) setTodos(JSON.parse(saved));
   }, []);
 
-  // -------------------------------
-  // 💾 LocalStorage-д хадгалах
-  // -------------------------------
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]); // todos өөрчлөгдөхөд автоматаар хадгална
+  }, [todos]);
 
-  // -------------------------------
-  // ➕ Todo нэмэх функц
-  // -------------------------------
   const addTodo = () => {
-    if (task.trim() !== "") {
-      const newTodo: Todo = {
-        text: task,
-        done: false,
-        due: due || "No due date", // Хэрэв сонгоогүй бол "No due date"
-      };
-      setTodos([...todos, newTodo]); // хуучин todos + шинэ todo
-      setTask(""); // input цэвэрлэх
-      setDue(""); // due date цэвэрлэх
-    }
+    if (!task.trim()) return;
+    const newTodo: Todo = { text: task, done: false, due: due || "No due date" };
+    setTodos([...todos, newTodo]);
+    setTask("");
+    setDue("");
   };
 
-  // -------------------------------
-  // ❌ Todo устгах функц
-  // -------------------------------
-  const removeTodo = (index: number) => {
-    setTodos(todos.filter((_, i) => i !== index));
+  const removeTodo = (i: number) => setTodos(todos.filter((_, x) => x !== i));
+  const toggleTodo = (i: number) => {
+    const t = [...todos];
+    t[i].done = !t[i].done;
+    setTodos(t);
   };
 
-  // -------------------------------
-  // ✅ Todo дууссан эсэхийг өөрчлөх
-  // -------------------------------
-  const toggleTodo = (index: number) => {
-    const updated = [...todos];
-    updated[index].done = !updated[index].done;
-    setTodos(updated);
-  };
+  const filtered = todos.filter((t) =>
+    filter === "done" ? t.done : filter === "notdone" ? !t.done : true
+  );
 
-  // -------------------------------
-  // 🔍 Filter хийх
-  // -------------------------------
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "done") return todo.done;
-    if (filter === "notdone") return !todo.done;
-    return true; // all
-  });
-
-  // -------------------------------
-  // 🖥 UI хэсэг
-  // -------------------------------
   return (
-    <div className="flex flex-col items-center gap-6 p-6">
-      <h1 className="text-2xl font-bold">Todo List</h1>
+    <div className="min-h-screen flex flex-col items-center p-6 bg-gradient-to-b from-blue-50 to-white">
+      <h1 className="text-3xl font-bold text-blue-700 mb-6">✅ Todo App</h1>
 
-      {/* Input хэсэг */}
-      <div className="flex gap-2">
-        <input
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          placeholder="Enter task"
-          className="border px-2 py-1 rounded"
-        />
-        <input
-          type="date"
-          value={due}
-          onChange={(e) => setDue(e.target.value)}
-          className="border px-2 py-1 rounded"
-        />
-        <button
-          onClick={addTodo}
-          className="bg-green-500 text-white px-4 py-1 rounded"
-        >
-          Add
-        </button>
-      </div>
-
-      {/* Filter buttons */}
-      <div className="flex gap-4">
-        <button
-          onClick={() => setFilter("all")}
-          className={`px-3 py-1 rounded ${
-            filter === "all" ? "bg-blue-500 text-white" : "bg-gray-200"
-          }`}
-        >
-          All
-        </button>
-        <button
-          onClick={() => setFilter("done")}
-          className={`px-3 py-1 rounded ${
-            filter === "done" ? "bg-blue-500 text-white" : "bg-gray-200"
-          }`}
-        >
-          Done
-        </button>
-        <button
-          onClick={() => setFilter("notdone")}
-          className={`px-3 py-1 rounded ${
-            filter === "notdone" ? "bg-blue-500 text-white" : "bg-gray-200"
-          }`}
-        >
-          Not Done
-        </button>
-      </div>
-
-      {/* Todo List */}
-      <ul className="w-80">
-        {filteredTodos.map((todo, index) => (
-          <li
-            key={index}
-            className="flex justify-between items-center border-b py-2"
+      <div className="bg-white p-6 rounded-2xl shadow-lg border w-full max-w-md">
+        {/* Input Row */}
+        <div className="flex gap-2 mb-4">
+          <input
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            placeholder="Task..."
+            className="border px-3 py-2 rounded-md w-full focus:ring-2 focus:ring-blue-400"
+          />
+          <input
+            type="date"
+            value={due}
+            onChange={(e) => setDue(e.target.value)}
+            className="border px-3 py-2 rounded-md focus:ring-2 focus:ring-blue-400"
+          />
+          <button
+            onClick={addTodo}
+            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
           >
-            <div>
-              <input
-                type="checkbox"
-                checked={todo.done}
-                onChange={() => toggleTodo(index)}
-                className="mr-2"
-              />
-              <span className={todo.done ? "line-through text-gray-500" : ""}>
-                {todo.text}
-              </span>
-              <div className="text-sm text-gray-500">📅 {todo.due}</div>
-            </div>
+            Add
+          </button>
+        </div>
+
+        {/* Filters */}
+        <div className="flex justify-center gap-2 mb-4">
+          {[
+            { key: "all", label: "All" },
+            { key: "done", label: "Done" },
+            { key: "notdone", label: "Not Done" },
+          ].map((b) => (
             <button
-              onClick={() => removeTodo(index)}
-              className="text-red-500 hover:underline"
+              key={b.key}
+              onClick={() => setFilter(b.key)}
+              className={`px-3 py-1 rounded-md text-sm font-medium transition ${
+                filter === b.key
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+              }`}
             >
-              Delete
+              {b.label}
             </button>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </div>
+
+        {/* Todo List */}
+        <ul className="space-y-2">
+          {filtered.length === 0 && (
+            <p className="text-gray-500 text-center py-4">No tasks ✨</p>
+          )}
+
+          {filtered.map((todo, i) => (
+            <li
+              key={i}
+              className="flex justify-between items-center bg-gray-50 border p-3 rounded-lg hover:shadow transition"
+            >
+              <div>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={todo.done}
+                    onChange={() => toggleTodo(i)}
+                  />
+                  <span
+                    className={`font-medium ${
+                      todo.done ? "line-through text-gray-500" : "text-gray-800"
+                    }`}
+                  >
+                    {todo.text}
+                  </span>
+                </label>
+                <div className="text-xs text-gray-500 mt-1">
+                  📅 {todo.due}
+                </div>
+              </div>
+
+              <button
+                onClick={() => removeTodo(i)}
+                className="text-red-500 text-sm font-medium hover:underline"
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
