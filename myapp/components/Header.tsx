@@ -13,7 +13,9 @@ export default function Header(){
         <Link href="/todo">todo</Link> |
         <Link href="/login">login</Link> |
         <Link href="/register">register</Link> |
-        <Link href="/users">users</Link>
+        <Link href="/users">users</Link> |
+        <Link href="/weather">weather</Link>
+
 
       </nav>
     </header>
