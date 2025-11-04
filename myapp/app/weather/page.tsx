@@ -17,26 +17,26 @@ export default function WeatherPage() {
   };
 
   return (
-    <div className="flex flex-col items-center p-6">
-      <h1 className="text-2xl font-bold mb-4">Weather App</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-300 to-blue-100 p-6">
+      <h1 className="text-4xl font-bold mb-6 text-blue-700">🌤 Weather App</h1>
 
-      <form onSubmit={fetchWeather} className="flex gap-2 mb-4">
+      <form onSubmit={fetchWeather} className="flex gap-3 mb-6">
         <input
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          placeholder="Хотын нэр..."
-          className="border px-3 py-1 rounded"
+          placeholder="Ulaanbaatar..."
+          className="border px-4 py-2 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
         />
-        <button className="bg-blue-500 text-white px-4 py-1 rounded">
+        <button className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition">
           Хайх
         </button>
       </form>
 
       {weather && (
-        <div className="p-4 border rounded text-center">
-          <h2 className="text-xl font-semibold">{weather.name}</h2>
-          <p>{weather.main.temp}°C</p>
-          <p>{weather.weather[0].description}</p>
+        <div className="p-6 border rounded-2xl text-center bg-white shadow-xl animate-fadeIn w-72">
+          <h2 className="text-2xl font-semibold mb-2">{weather.name}</h2>
+          <p className="text-5xl font-bold text-blue-600">{weather.main.temp}°C</p>
+          <p className="capitalize text-gray-600 mt-2">{weather.weather[0].description}</p>
         </div>
       )}
     </div>
