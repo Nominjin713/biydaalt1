@@ -1,98 +1,88 @@
-:root {
-  --bg: #F7FBFF;       /* Гол фоны өнгө - цэвэр цайвар хөх */
-  --card: #FFFFFF;     /* Картын цагаан фон */
-  --accent: #2563EB;   /* Акцент өнгө - цэнхэр */
-  --text: #0F172A;     /* Ерөнхий текстийн өнгө - бараан хөх */
-  --muted: #64748B;    /* Зөөлрүүлсэн текст - саарал хөх */
-  --radius: 12px;      /* Картын булангийн радиус */
-  --shadow: 0 6px 18px rgba(15,23,42,0.08); /* Картын сүүдэр */
-}
-
-/* Ерөнхий контейнер */
 .container {
   min-height: 100vh;
-  padding: 48px 20px;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  padding: 60px 30px;
+  background: linear-gradient(to bottom right, #eef2ff, #fdf2f8);
+  font-family: "Inter", sans-serif;
 }
 
-/* Толгой хэсэг (header) */
 .header {
-  max-width: 1000px;
-  margin: 0 auto 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.title {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.subtitle {
-  color: var(--muted);
-  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-/* Grid (шугам) ба картууд */
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #312e81;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 16px;
+}
+
 .grid {
-  max-width: 1000px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
 .card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
-  border: 1px solid rgba(15,23,42,0.04);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.6);
+  transition: all 0.25s ease;
+  position: relative;
 }
+
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 14px 36px rgba(15,23,42,0.12);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.15);
 }
 
-/* Картын доторх текстүүд */
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #6366f1;
+  color: white;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
 .postTitle {
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.postMeta {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-bottom: 12px;
-}
-.excerpt {
-  font-size: 0.95rem;
-  color: #334155;
-  line-height: 1.5;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e1b4b;
+  margin-bottom: 10px;
 }
 
-/* Линк, товч */
-.link {
-  display: inline-block;
-  margin-top: 12px;
-  text-decoration: none;
-  color: var(--accent);
-  font-weight: 600;
+.excerpt {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 15px;
 }
+
+.meta {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+.link {
+  font-weight: 600;
+  color: #6366f1;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
 .link:hover {
   text-decoration: underline;
+  color: #4f46e5;
 }
-
-/* Responsive дизайн - жижиг дэлгэцэнд */
-@media (max-width: 640px) {
-  .container {
-    padding: 28px 16px;
-  }
-  .title {
-    font-size: 1.5rem;
-  }
-}
+  

@@ -1,46 +1,31 @@
-// // app/blog/page.tsx
-// import Link from 'next/link';
-
-// export default function BlogHome() {
-//   return (
-//     <div>
-//       <h1>Blog Homepage</h1>
-//       <p>Welcome to our blog! Here are some posts:</p>
-//       <ul>
-//         <li><Link href="/blog/1">Post 1</Link></li>
-//         <li><Link href="/blog/2">Post 2</Link></li>
-//         <li><Link href="/blog/3">Post 3</Link></li>
-//       </ul>
-//     </div>
-//   );
-// }
-
 import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function BlogHome() {
   const posts = [
-    { id: "1", title: "Post 1", excerpt: "Short intro to post 1" },
-    { id: "2", title: "Post 2", excerpt: "Short intro to post 2" },
-    { id: "3", title: "Post 3", excerpt: "Short intro to post 3" },
+    { id: "1", title: "React Best Practices", excerpt: "Learn modern React clean code patterns." },
+    { id: "2", title: "Next.js Routing Guide", excerpt: "Master dynamic & nested routing in Next.js." },
+    { id: "3", title: "Tailwind vs CSS Modules", excerpt: "Which styling method should you choose?" },
   ];
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <div>
-          <h1 className={styles.title}>Blog Homepage</h1>
-          <p className={styles.subtitle}>Welcome — here are our latest posts</p>
-        </div>
+        <h1 className={styles.title}>📝 Modern Tech Blog</h1>
+        <p className={styles.subtitle}>Latest articles — stay updated & learn faster 🚀</p>
       </header>
 
       <section className={styles.grid}>
-        {posts.map(p => (
-          <article key={p.id} className={styles.card}>
-            <h3 className={styles.postTitle}>{p.title}</h3>
-            <div className={styles.postMeta}>Jun 15 • 3 min read</div>
-            <p className={styles.excerpt}>{p.excerpt}</p>
-            <Link className={styles.link} href={`/blog/${p.id}`}>Read more →</Link>
+        {posts.map((post) => (
+          <article key={post.id} className={styles.card}>
+            <div className={styles.badge}>Tech</div>
+            <h3 className={styles.postTitle}>{post.title}</h3>
+            <p className={styles.excerpt}>{post.excerpt}</p>
+            <div className={styles.meta}>📅 Jan 2025 • ⏱️ 4 min read</div>
+
+            <Link href={`/blog/${post.id}`} className={styles.link}>
+              Read article →
+            </Link>
           </article>
         ))}
       </section>
