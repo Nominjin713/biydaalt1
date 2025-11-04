@@ -12,7 +12,8 @@ export default function Header(){
         <Link href="/counter">Counter</Link>  |
         <Link href="/todo">todo</Link> |
         <Link href="/login">login</Link> |
-        <Link href="/register">register</Link>
+        <Link href="/register">register</Link> |
+        <Link href="/users">users</Link>
 
       </nav>
     </header>
