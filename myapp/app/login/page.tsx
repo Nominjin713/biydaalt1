@@ -1,7 +1,11 @@
 "use client";
+
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,13 +23,18 @@ export default function LoginPage() {
     }
 
     setError("");
-    alert(`✅ Амжилттай нэвтэрлээ: ${email}`);
+
+    // ✅ Амжилттай login → localStorage-д хадгалах
+    localStorage.setItem("loggedIn", "true");
+
+    // ✅ Dashboard руу шилжүүлэх
+    router.push("/");
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-200 via-indigo-200 to-purple-200 p-6">
-      <div className="bg-white/50 backdrop-blur-xl p-8 rounded-2xl shadow-xl w-96 border border-white/40 animate-fadeIn">
-        <h1 className="text-4xl font-extrabold text-center text-indigo-800 drop-shadow mb-6 animate-fadeIn">
+      <div className="bg-white/70 backdrop-blur-xl p-8 rounded-2xl shadow-xl w-96 border border-white/40">
+        <h1 className="text-4xl font-extrabold text-center text-indigo-800 drop-shadow mb-6">
           🔐 Нэвтрэх
         </h1>
 
@@ -33,7 +42,8 @@ export default function LoginPage() {
           <input
             type="email"
             placeholder="Имэйл"
-            className="w-full bg-white/70 border border-indigo-200 p-3 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none shadow-sm"
+            className="w-full bg-white text-black border border-indigo-300 p-3 rounded-xl
+                     focus:ring-2 focus:ring-indigo-500 outline-none shadow-sm relative z-10"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -41,20 +51,22 @@ export default function LoginPage() {
           <input
             type="password"
             placeholder="Нууц үг"
-            className="w-full bg-white/70 border border-indigo-200 p-3 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none shadow-sm"
+            className="w-full bg-white text-black border border-indigo-300 p-3 rounded-xl
+                     focus:ring-2 focus:ring-indigo-500 outline-none shadow-sm relative z-10"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
           {error && (
-            <p className="text-red-500 text-sm font-semibold text-center animate-pulse">
+            <p className="text-red-600 text-sm font-semibold text-center">
               {error}
             </p>
           )}
 
           <button
             type="submit"
-            className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-xl shadow hover:bg-indigo-700 hover:shadow-xl hover:-translate-y-0.5 transition"
+            className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-xl shadow
+                       hover:bg-indigo-700 hover:shadow-xl transition"
           >
             Нэвтрэх
           </button>
