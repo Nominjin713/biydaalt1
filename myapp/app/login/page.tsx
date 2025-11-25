@@ -28,7 +28,7 @@ export default function LoginPage() {
     localStorage.setItem("loggedIn", "true");
 
     // ✅ Dashboard руу шилжүүлэх
-    router.push("/");
+    router.push("/dashboard");
   };
 
   return (

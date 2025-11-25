@@ -11,8 +11,8 @@ export default function Header(){
         <Link href="/gallery">Gallery</Link> |
         <Link href="/counter">Counter</Link>  |
         <Link href="/todo">todo</Link> |
-        <Link href="/login">login</Link> |
-        <Link href="/register">register</Link> |
+        <Link href="/login1">login</Link> |
+        <Link href="/register1">register</Link> |
         <Link href="/users">users</Link> |
         <Link href="/weather">weather</Link>
 
